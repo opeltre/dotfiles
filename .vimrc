@@ -1,7 +1,28 @@
 " ~/.vimrc
 
 " pathogen
-" execute pathogen#infect()
+execute pathogen#infect()
+
+""""""" FOLDS 
+
+set foldlevel=1
+
+" toggle folds with space 
+nnoremap <space> za
+" python docstrings
+let g:SimpylFold_fold_docstring = 0
+" folds appearance
+:hi Folded ctermbg=black
+:hi Folded ctermfg=yellow
+:hi FoldColumn ctermbg=black
+" foldtext
+set foldtext=MyFoldText()
+function MyFoldText()
+  let line = getline(v:foldstart)
+  let sub = substitute(line, '/\*\|\*/\|{{{\d\=', '', 'g')
+  return sub
+endfunction
+
 
 " souris
 set mouse=a
@@ -40,7 +61,7 @@ set showbreak=......
 au BufNewFile,BufReadPost *.tex set showbreak=. 
 
 " Se déplacer ligne à ligne:
-nnoremap j gj 
-vnoremap j gj
+"nnoremap j gj 
+"vnoremap j gj
 nnoremap k gk
 vnoremap k gk
