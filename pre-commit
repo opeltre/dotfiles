@@ -49,6 +49,7 @@ diffs=$(git diff-index --cached --name-only $against)
 for f in $diffs; do
     if [[ $f == *.py ]]; then
         black $f
+        git add $f
     fi
 done
 
